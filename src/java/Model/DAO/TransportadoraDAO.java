@@ -114,7 +114,11 @@ public class TransportadoraDAO {
                 String empresa = rs.getString("empresa");
                 String telefone = rs.getString("telefone");
                 String email = rs.getString("email");  
-                               
+                
+                System.out.println(name);
+                System.out.println(empresa);
+                System.out.println(telefone);
+                System.out.println(email);
             }                           
             
         }catch (SQLException e) {

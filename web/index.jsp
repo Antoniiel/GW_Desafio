@@ -4,14 +4,39 @@
     Author     : gabriel
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Teste!</h1>
-    </body>
+  <head>
+    <title>GW Trans</title>
+    <link href="index.css" rel="stylesheet">
+    
+  </head>  
+  <body>
+      
+      <header>
+          <div class="cabecalho">
+              
+                  <h2 class="tituloheader">Transportadoras</h2>
+              
+                  <button class="botaocadastro">Cadastre sua transportadora</button>
+              
+          </div>
+      </header>
+      
+     
+      <table>          
+    <c:forEach var="trans" items="${ListTransportadoras}">
+        
+    <tr>
+        <td><c:out value="${trans.nome}"/></td> 
+        <td><c:out value="${trans.empresa}"/></td> 
+        <td><c:out value="${trans.telefone}"/></td> 
+        <td><c:out value="${trans.email}"/></td> 
+        <td>Fale agora:<c:out value="${trans.whatsapp}"/></td> 
+    
+    </tr> 
+    </c:forEach>
+    </table>
+
+</body>
 </html>

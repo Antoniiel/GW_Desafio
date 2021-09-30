@@ -1,0 +1,31 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29 de set de 2021, 13:47:04
+    Author     : gabriel
+*/
+
+
+.cabecalho{
+    display: flex;             
+}
+
+.tituloheader {
+  flex-grow: 5;
+}
+
+.botaocadastro{
+    flex-grow: 1;
+    background-color: green;
+    
+    box-shadow: 5px 7px  black;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px 5px;
+}
