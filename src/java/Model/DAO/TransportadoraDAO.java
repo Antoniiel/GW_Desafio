@@ -16,7 +16,7 @@ public class TransportadoraDAO {
         PreparedStatement stmt = null;
         try {
             //arrumar ordem
-            stmt = con.prepareStatement("INSERT INTO transportadora (nome, telefone, celular, whatsapp, modal, email, empresa, cep, endereco, cidade, bairro, estado, numero) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO transportadora (email, nome, empresa, telefone, celular, whatsapp, modal, cep, estado, cidade, bairro, rua, numero) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
             stmt.setString(1, trans.getEmail());
             stmt.setString(2, trans.getNome());
             stmt.setString(3, trans.getEmpresa());
@@ -144,7 +144,7 @@ public class TransportadoraDAO {
                 trans.setNome(rs.getString("nome"));
                 trans.setEmpresa(rs.getString("empresa"));
                 trans.setCelular(rs.getString("telefone"));
-                trans.setEmail(rs.getString("email"));                
+                trans.setEmail(rs.getString("email"));               
                 
                 listaDeTransportadoras.add(trans);
                 

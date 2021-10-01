@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -17,18 +17,29 @@ public class TesteInsert {
 
         Transportadora trans = new Transportadora();
         TransportadoraDAO dao = new TransportadoraDAO();
-//        trans.setNome("Loggi");
-//        trans.setTelefone("8132256625");
-//        trans.setCelular("81995598547");
-//        trans.setWhatsapp("8132346625");
-//        trans.setEmail("teste@teste.com");
-//        trans.setEmpresa("Loggi");
-//        trans.setCep("96588-845");
-//        trans.setRua("ruaa aisdufniaudsnf");
-//        trans.setCidade("Recife");
-//        trans.setBairro("Espinheiro");
-//        dao.insert(trans);
 
-        dao.getAllTrans();
+//        dao.getAllTrans().stream().forEach((eachTransportadora) -> {
+//
+//            System.out.println(eachTransportadora.getNome());
+//
+//        });
+       
+
+        trans.setEmail("teste@teste.com");
+        trans.setNome("JadLog");
+        trans.setEmpresa("07.388.416/0001-78");
+        trans.setTelefone("8135556625");
+        trans.setCelular("81995594847");
+        trans.setWhatsapp("8132346595");
+        trans.setModal("modal");
+        trans.setCep("91568-845");
+        trans.setEstado("Pernambuco");
+        trans.setCidade("Recife");
+        trans.setBairro("Afogados");
+        trans.setRua("ruaa aisdufsadasdqwsnf");
+        trans.setNumero("123");
+
+        dao.insert(trans);
+
     }
 }
