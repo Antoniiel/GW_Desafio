@@ -35,7 +35,7 @@ public class TransportadoraDAO {
 
             System.out.println("Inserido com sucesso!");
         } catch (SQLException ex) {
-            System.out.println("Falha ao inserir" + ex);
+            System.out.println("Falha ao inserir " + ex);
 
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
@@ -70,7 +70,7 @@ public class TransportadoraDAO {
 
             System.out.println("Atualizado com sucesso!");
         } catch (SQLException ex) {
-            System.out.println("Falha ao Atualizar" + ex);
+            System.out.println("Falha ao Atualizar " + ex);
 
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
@@ -141,14 +141,13 @@ public class TransportadoraDAO {
             while(rs.next())
             {
                 Transportadora trans = new Transportadora();
+                trans.setId(rs.getInt("id"));
                 trans.setNome(rs.getString("nome"));
                 trans.setEmpresa(rs.getString("empresa"));
-                trans.setCelular(rs.getString("telefone"));
-                trans.setEmail(rs.getString("email"));               
-                
-                listaDeTransportadoras.add(trans);
-                
-                                            
+                trans.setTelefone(rs.getString("telefone"));
+                trans.setEmail(rs.getString("email"));   
+                trans.setWhatsapp(rs.getString("whatsapp"));
+                listaDeTransportadoras.add(trans);  
             }
             System.out.println("busca realizada");
         }catch (SQLException e){

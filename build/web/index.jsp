@@ -18,10 +18,12 @@
 
                 <h2 class="tituloheader">Transportadoras</h2>
 
-                <button class="botaocadastro">Cadastre sua transportadora</button>
-
+                <button class="botaocadastro" onclick="location.href='TransportadoraControler?action=new'" >Cadastre sua transportadora</button>
+                
+                
             </div>
-        </header>
+        </header>       
+       
 
         <section class="container">
             <div id="conteudo">
@@ -43,35 +45,34 @@
 
 
             <div class="conteudo-principal">
-                <table>            
+                <table class="tabela">          
+                    <c:forEach var="trans" items="${ListarTrasnportadoras}">
+                        
+                            <tr>
+                                <td class="espacamentotabela"><a href=""><c:out value="${trans.nome}"/></a></td> 
+                                <td class="espacamentotabela"><c:out value="${trans.telefone}"/></td> 
+                                <td class="espacamentotabela">Fale agora: <c:out value="${trans.whatsapp}"/></td> 
+                                <td class="espacamentotabela"><c:out value="${trans.id}"/></td> 
+                                <td><a href="TransportadoraControler?action=delete?id"<c:out value="${trans.id}"/>> deletar </a></td>
+                                
+                            </tr> 
 
-                    <tr>
-                        <td>teste</td> 
-                        <td>teste</td> 
-                        <td>teste</td> 
-                        <td>teste</td> 
-                        <td>teste</td> 
+                            <tr> 
+                                <td class="espacamentotabela2"><c:out value="${trans.empresa}"/></td> 
 
-                    </tr> 
-                </table>
+                                <td class="espacamentotabela2"><c:out value="${trans.email}"/></td> 
+                            </tr>                             
+                        </div>
 
-            </div>
 
-        </section>
+                            </c:forEach>
+                            </table>
 
-        <table>          
-            <c:forEach var="trans" items="${ListarTrasnportadoras}">
+                        
 
-                <tr>
-                    <td><c:out value="${trans.nome}"/></td> 
-                    <td><c:out value="${trans.empresa}"/></td> 
-                    <td><c:out value="${trans.telefone}"/></td> 
-                    <td><c:out value="${trans.email}"/></td> 
-                    <td>Fale agora:<c:out value="${trans.whatsapp}"/></td> 
+                        </section>
 
-                </tr> 
-            </c:forEach>
-        </table>
 
-    </body>
-</html>
+
+                        </body>
+                        </html>

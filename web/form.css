@@ -1,0 +1,42 @@
+.container {    
+    display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+
+}
+.box {
+    border: 1px solid grey;
+    padding: 1rem;
+    width: 600px;
+    justify-content: center;
+}
+
+
+label {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14pt;
+    
+}
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+select {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14pt;
+}
+
+input {
+    
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14pt;    
+    margin-bottom: 0.5rem;    
+      
+    
+}
+.botaocadastro {
+    display: block;
+    margin: 0 auto;
+}

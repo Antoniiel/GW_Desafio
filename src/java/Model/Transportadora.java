@@ -20,17 +20,20 @@ public class Transportadora {
     private String numero;
     private String modal;
 
-    public Transportadora() {
+    public Transportadora(int id) {
+        this.id = id;
     }
     
+    public Transportadora(){
+        
+    }
     
-       
-    public Transportadora(int id, String email, String nome, String empresa, String telefone, String celular, 
+   
+    public Transportadora( String email, String nome, String empresa, String telefone, String celular, 
             String whatsapp, String modal, String cep, String estado, String cidade, String bairro, String rua, String numero){
             
+             
         
-        
-        this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.celular = celular;
