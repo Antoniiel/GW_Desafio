@@ -82,10 +82,10 @@ public class TransportadoraDAO {
 
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
-
+        
         try {
             stmt = con.prepareStatement("DELETE FROM transportadora WHERE id = ?");
-            
+            System.out.println("chegou no delete");
             stmt.setInt(1, id);
             stmt.executeUpdate();
 

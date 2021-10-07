@@ -53,7 +53,7 @@
                                 <td class="espacamentotabela"><c:out value="${trans.telefone}"/></td> 
                                 <td class="espacamentotabela">Fale agora: <c:out value="${trans.whatsapp}"/></td> 
                                 <td class="espacamentotabela"><c:out value="${trans.id}"/></td> 
-                                <td><a href="TransportadoraControler?action=delete?id"<c:out value="${trans.id}"/>> deletar </a></td>
+                                <td><a href="action=delete?id=<c:out value="${trans.id}"/>"> deletar </a></td>
                                 
                             </tr> 
 

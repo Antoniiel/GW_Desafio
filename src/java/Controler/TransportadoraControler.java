@@ -54,6 +54,7 @@ public class TransportadoraControler extends HttpServlet {
             } else if (action.equals("insert")){
                 insertTransportadoras(req, res);
             } else if (action.equals("delete")){
+                System.out.println("chegou no delete controler");
                 deleteTransportadora(req, res);
             } else if (action.equals("edit")){
                 editForm(req, res);
