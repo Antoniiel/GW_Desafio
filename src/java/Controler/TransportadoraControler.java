@@ -8,9 +8,7 @@ package Controler;
 import Model.DAO.TransportadoraDAO;
 import Model.Transportadora;
 import java.io.IOException;
-import java.sql.SQLDataException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,8 +16,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -165,6 +161,7 @@ public class TransportadoraControler extends HttpServlet {
     private void updateTransportadoras(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         
+        int id = Integer.parseInt(request.getParameter("id")); 
         String email = request.getParameter("email");
         String nome = request.getParameter("nome");
         String empresa = request.getParameter("empresa");
@@ -181,6 +178,8 @@ public class TransportadoraControler extends HttpServlet {
         Transportadora trans = new Transportadora(email, nome, empresa, telefone, celular, whatsapp,
                 modal, cep, estado, cidade, bairro, rua, numero);
         TransportadoraDAO.update(trans);
+        System.out.println(trans);
+        System.out.println("após update");
         response.sendRedirect("TransportadoraControler?action=list");
 
     }

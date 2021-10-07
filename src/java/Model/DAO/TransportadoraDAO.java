@@ -43,8 +43,7 @@ public class TransportadoraDAO {
 
     }
 
-    public void update(Transportadora trans) {
-
+    public void update(Transportadora trans) {        
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
 
@@ -100,7 +99,7 @@ public class TransportadoraDAO {
     }
     
     public Transportadora SelectTransportadora(int id){
-        Transportadora trans = null;
+        Transportadora trans = new Transportadora();
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         
@@ -110,15 +109,33 @@ public class TransportadoraDAO {
             System.out.println(stmt);            
             ResultSet rs = stmt.executeQuery();            
             while(rs.next()){                
-                String name = rs.getString("nome");
-                String empresa = rs.getString("empresa");
-                String telefone = rs.getString("telefone");
-                String email = rs.getString("email");  
+//                String name = rs.getString("nome");
+//                String empresa = rs.getString("empresa");
+//                String telefone = rs.getString("telefone");
+//                String email = rs.getString("email");  
+
                 
-                System.out.println(name);
-                System.out.println(empresa);
-                System.out.println(telefone);
-                System.out.println(email);
+                trans.setId(rs.getInt("id"));
+                trans.setEmail(rs.getString("email"));
+                trans.setNome(rs.getString("nome"));
+                trans.setEmpresa(rs.getString("empresa"));
+                trans.setTelefone(rs.getString("telefone"));
+                trans.setCelular(rs.getString("celular"));
+                trans.setWhatsapp(rs.getString("whatsapp"));
+                trans.setModal(rs.getString("modal"));
+                trans.setCep(rs.getString("cep"));
+                trans.setEstado(rs.getString("estado"));
+                trans.setCidade(rs.getString("cidade"));
+                trans.setBairro(rs.getString("bairro"));
+                trans.setRua(rs.getString("rua"));
+                trans.setNumero(rs.getString("numero"));
+                             
+                
+                
+                System.out.println(rs.getString("email"));
+                System.out.println(rs.getString("nome"));
+                System.out.println(rs.getString("empresa"));
+                System.out.println(rs.getString("telefone"));
             }                           
             
         }catch (SQLException e) {
@@ -142,11 +159,19 @@ public class TransportadoraDAO {
             {
                 Transportadora trans = new Transportadora();
                 trans.setId(rs.getInt("id"));
+                trans.setEmail(rs.getString("email"));
                 trans.setNome(rs.getString("nome"));
                 trans.setEmpresa(rs.getString("empresa"));
                 trans.setTelefone(rs.getString("telefone"));
-                trans.setEmail(rs.getString("email"));   
+                trans.setCelular(rs.getString("celular"));
                 trans.setWhatsapp(rs.getString("whatsapp"));
+                trans.setModal(rs.getString("modal"));
+                trans.setCep(rs.getString("cep"));
+                trans.setEstado(rs.getString("estado"));
+                trans.setCidade(rs.getString("cidade"));
+                trans.setBairro(rs.getString("bairro"));
+                trans.setRua(rs.getString("rua"));
+                trans.setNumero(rs.getString("numero"));
                 listaDeTransportadoras.add(trans);  
             }
             System.out.println("busca realizada");

@@ -18,7 +18,7 @@ public class TesteInsert {
         Transportadora trans = new Transportadora();
         TransportadoraDAO dao = new TransportadoraDAO();
         
-        dao.delete(16);
+        
 
 //        dao.getAllTrans().stream().forEach((eachTransportadora) -> {
 //
@@ -30,22 +30,23 @@ public class TesteInsert {
 //
 //        });
 
+        
+        trans.setEmail("teste3@teste.com");
+        trans.setNome("churupinga");
+        trans.setEmpresa("14.659.280/0001-59");
+        trans.setTelefone("8135698525");
+        trans.setCelular("81987644847");
+        trans.setWhatsapp("81987644847");
+        trans.setModal("modal");
+        trans.setCep("50770-720");
+        trans.setEstado("Pernambuco");
+        trans.setCidade("Recife");
+        trans.setBairro("Afogados");
+        trans.setRua("Rua São Miguel");
+        trans.setNumero("67");        
+        trans.setId(21);
 
-//        trans.setEmail("teste3@teste.com");
-//        trans.setNome("Correios");
-//        trans.setEmpresa("14.659.280/0001-59");
-//        trans.setTelefone("8135698525");
-//        trans.setCelular("81987644847");
-//        trans.setWhatsapp("81987644847");
-//        trans.setModal("modal");
-//        trans.setCep("50770-720");
-//        trans.setEstado("Pernambuco");
-//        trans.setCidade("Recife");
-//        trans.setBairro("Afogados");
-//        trans.setRua("Rua São Miguel");
-//        trans.setNumero("67");
-//
-//        dao.insert(trans);
+        dao.update(trans);
             
           
 

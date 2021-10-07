@@ -21,7 +21,7 @@
             <div class="box">
                 
            <c:if test="${trans != null}">
-            <form action="TransportadoraControler?action=update" method="post">
+            <form action="TransportadoraControler?action=update&id=21" method="post">
             </c:if>
             <c:if test="${trans == null}">
                 <form action="TransportadoraControler?action=insert" method="post">
@@ -79,7 +79,19 @@
             <input type="text" id="lname" name="numero" value="<c:out value="${trans.numero}"/>"><br>
             <input type="checkbox" id="terms" value="">
             <label id="lname">Eu aceito os termos de serviço</label><br>
-            <input class="botaocadastro" type="submit" value="Cadastrar-se agora!">
+                         <input class="botaocadastro" type="submit" value="Cadastrar-se agora!">
+                         
+            <c:if test="${trans != null}">
+                
+                               
+               <input class="botaocadastro" type="submit" value="Cadastrar-se agora!">
+                            <a href="TransportadoraControler?action=delete&id=<c:out value="${trans.id}"/>"> deletar </a>
+                            <button class="botaocadastro" onclick="location.href=TransportadoraControler?action=delete&id=<c:out value="${trans.id}"/>" >Deletar</button>
+                        </c:if>
+                        <c:if test="${trans == null}">
+                            <input class="botaocadastro" type="submit" value="Cadastrar-se agora!">
+                        </c:if>
+                         
         </form>
             </div>
             </div>
