@@ -83,8 +83,7 @@ public class TransportadoraDAO {
         PreparedStatement stmt = null;
         
         try {
-            stmt = con.prepareStatement("DELETE FROM transportadora WHERE id = ?");
-            System.out.println("chegou no delete");
+            stmt = con.prepareStatement("DELETE FROM transportadora WHERE id = ?");            
             stmt.setInt(1, id);
             stmt.executeUpdate();
 

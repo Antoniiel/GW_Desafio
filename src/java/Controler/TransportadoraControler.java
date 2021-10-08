@@ -137,46 +137,78 @@ public class TransportadoraControler extends HttpServlet {
 
     private void insertTransportadoras(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
+        Transportadora trans = new Transportadora();
         
-        String email = request.getParameter("email");
-        String nome = request.getParameter("nome");
-        String empresa = request.getParameter("empresa");
-        String telefone = request.getParameter("telefone");
-        String celular = request.getParameter("celular");
-        String whatsapp = request.getParameter("whatsapp");
-        String modal = request.getParameter("modal");
-        String cep = request.getParameter("cep");
-        String estado = request.getParameter("estado");
-        String cidade = request.getParameter("cidade");
-        String bairro = request.getParameter("bairro");
-        String rua = request.getParameter("rua");
-        String numero = request.getParameter("numero");
+                trans.setEmail(request.getParameter("email"));
+                trans.setNome(request.getParameter("nome"));
+                trans.setEmpresa(request.getParameter("empresa"));
+                trans.setTelefone(request.getParameter("telefone"));
+                trans.setCelular(request.getParameter("celular"));
+                trans.setWhatsapp(request.getParameter("whatsapp"));
+                trans.setModal(request.getParameter("modal"));
+                trans.setCep(request.getParameter("cep"));
+                trans.setEstado(request.getParameter("estado"));
+                trans.setCidade(request.getParameter("cidade"));
+                trans.setBairro(request.getParameter("bairro"));
+                trans.setRua(request.getParameter("rua"));
+                trans.setNumero(request.getParameter("numero"));
+        
+//        String email = request.getParameter("email");
+//        String nome = request.getParameter("nome");
+//        String empresa = request.getParameter("empresa");
+//        String telefone = request.getParameter("telefone");
+//        String celular = request.getParameter("celular");
+//        String whatsapp = request.getParameter("whatsapp");
+//        String modal = request.getParameter("modal");
+//        String cep = request.getParameter("cep");
+//        String estado = request.getParameter("estado");
+//        String cidade = request.getParameter("cidade");
+//        String bairro = request.getParameter("bairro");
+//        String rua = request.getParameter("rua");
+//        String numero = request.getParameter("numero");
 
-        Transportadora trans = new Transportadora(email, nome, empresa, telefone, celular, whatsapp,
-                modal, cep, estado, cidade, bairro, rua, numero);
+//        Transportadora trans = new Transportadora(id, email, nome, empresa, telefone, celular, whatsapp,
+//                modal, cep, estado, cidade, bairro, rua, numero);
         TransportadoraDAO.insert(trans);
         response.sendRedirect("TransportadoraControler?action=list");
     }
 
     private void updateTransportadoras(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
+        Transportadora trans = new Transportadora();
+            trans.setId(Integer.parseInt(request.getParameter("id")));
+            trans.setEmail(request.getParameter("email"));
+            trans.setNome(request.getParameter("nome"));
+            trans.setEmpresa(request.getParameter("empresa"));
+            trans.setTelefone(request.getParameter("telefone"));
+            trans.setCelular(request.getParameter("celular"));
+            trans.setWhatsapp(request.getParameter("whatsapp"));
+            trans.setModal(request.getParameter("modal"));
+            trans.setCep(request.getParameter("cep"));
+            trans.setEstado(request.getParameter("estado"));
+            trans.setCidade(request.getParameter("cidade"));
+            trans.setBairro(request.getParameter("bairro"));
+            trans.setRua(request.getParameter("rua"));
+            trans.setNumero(request.getParameter("numero"));
         
-        int id = Integer.parseInt(request.getParameter("id")); 
-        String email = request.getParameter("email");
-        String nome = request.getParameter("nome");
-        String empresa = request.getParameter("empresa");
-        String telefone = request.getParameter("telefone");
-        String celular = request.getParameter("celular");
-        String whatsapp = request.getParameter("whatsapp");
-        String modal = request.getParameter("modal");
-        String cep = request.getParameter("cep");
-        String estado = request.getParameter("estado");
-        String cidade = request.getParameter("cidade");
-        String bairro = request.getParameter("bairro");
-        String rua = request.getParameter("rua");
-        String numero = request.getParameter("numero");
-        Transportadora trans = new Transportadora(email, nome, empresa, telefone, celular, whatsapp,
-                modal, cep, estado, cidade, bairro, rua, numero);
+//        
+//        int id = Integer.parseInt(request.getParameter("id"));
+//        String email = request.getParameter("email");
+//        String nome = request.getParameter("nome");
+//        String empresa = request.getParameter("empresa");
+//        String telefone = request.getParameter("telefone");
+//        String celular = request.getParameter("celular");
+//        String whatsapp = request.getParameter("whatsapp");
+//        String modal = request.getParameter("modal");
+//        String cep = request.getParameter("cep");
+//        String estado = request.getParameter("estado");
+//        String cidade = request.getParameter("cidade");
+//        String bairro = request.getParameter("bairro");
+//        String rua = request.getParameter("rua");
+//        String numero = request.getParameter("numero");
+//        Transportadora trans = new Transportadora(id, email, nome, empresa, telefone, celular, whatsapp,
+//                modal, cep, estado, cidade, bairro, rua, numero);
+//        System.out.println("pegou o id:" + request.getParameter("id"));
         TransportadoraDAO.update(trans);
         System.out.println(trans);
         System.out.println("após update");
