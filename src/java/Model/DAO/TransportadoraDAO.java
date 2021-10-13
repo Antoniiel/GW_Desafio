@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransportadoraDAO {
-
+    
+    //Inserir nova transportadora
     public void insert(Transportadora trans) {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
@@ -43,6 +44,7 @@ public class TransportadoraDAO {
 
     }
 
+    //Edição de transportadora
     public void update(Transportadora trans) {        
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
@@ -76,7 +78,8 @@ public class TransportadoraDAO {
         }
 
     }
-
+    
+    //Remover transportadora
     public void delete(int id) {
 
         Connection con = ConnectionFactory.getConnection();
@@ -97,6 +100,7 @@ public class TransportadoraDAO {
 
     }
     
+    //Selecionando Transportadora por id
     public Transportadora SelectTransportadora(int id){
         Transportadora trans = new Transportadora();
         Connection con = ConnectionFactory.getConnection();
@@ -145,15 +149,62 @@ public class TransportadoraDAO {
         
         return trans;
     }
+    
+    
+    
+    public List<Transportadora> buscarTransportadora(String nome) {
+        List<Transportadora> listaDeTransportadoras = new ArrayList<>();
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;       
+        
+        try {            
+            stmt = con.prepareStatement("SELECT * FROM transportadora WHERE nome LIKE '%" + nome + "%'");
+            
+            System.out.println(stmt);    
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next())
+            {
+                Transportadora trans = new Transportadora();
+                
+                trans.setEmail(rs.getString("email"));
+                trans.setNome(rs.getString("nome"));
+                trans.setEmpresa(rs.getString("empresa"));
+                trans.setTelefone(rs.getString("telefone"));
+                trans.setCelular(rs.getString("celular"));
+                trans.setWhatsapp(rs.getString("whatsapp"));
+                trans.setModal(rs.getString("modal"));
+                trans.setCep(rs.getString("cep"));
+                trans.setEstado(rs.getString("estado"));
+                trans.setCidade(rs.getString("cidade"));
+                trans.setBairro(rs.getString("bairro"));
+                trans.setRua(rs.getString("rua"));
+                trans.setNumero(rs.getString("numero"));
+                listaDeTransportadoras.add(trans);  
+            }
+            System.out.println("busca realizada");
+            System.out.println(rs.getString(nome));
+        }catch (SQLException e){
+                System.out.println("Erro ao Listar " + e);
+                }
+        finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }        
+            return listaDeTransportadoras;
+        }
+     
+    
 
+       
+    //Retorno de todas as transportadores
     public List<Transportadora> getAllTrans() {
-        List<Transportadora> listaDeTransportadoras = new ArrayList<Transportadora>();
+        List<Transportadora> listaDeTransportadoras = new ArrayList<>();
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;       
         
         try {            
             stmt = con.prepareStatement("SELECT * FROM transportadora");
             ResultSet rs = stmt.executeQuery();
+            System.out.println(stmt);   
             while(rs.next())
             {
                 Transportadora trans = new Transportadora();
