@@ -33,9 +33,11 @@
 
                 <div id="busca">
                     <h3>Nome</h3>
-                    <input>
-
-                    </input>
+                    <form id="buscanome" name="buscanome" action="TransportadoraControler?action=buscaNome&nome=<c:out value="${trans.nome}"/>" method="post">
+                        <label id="lname">Nome</label>
+                        <input type="text" id="nome" name="nome" required="required"  >
+                        <input type="submit" value="buscar" >
+                    </form>
 
                 </div>
 

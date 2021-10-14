@@ -58,6 +58,8 @@ public class TransportadoraControler extends HttpServlet {
                 updateTransportadoras(req, res);
             } else if (action.equals("list")){
                 listTransportadoras(req, res);
+            } else if (action.equals("buscaNome")){
+                buscaPorNome(req, res);
             }
         } catch(Exception ex) {
             ex.printStackTrace();
@@ -131,6 +133,16 @@ public class TransportadoraControler extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");        
         dispatcher.forward(request, response);
         
+    }
+    
+    private void buscaPorNome(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException{        
+        String nome = request.getParameter("nome");
+        System.out.println(nome);
+        List<Transportadora> ResultadoBusca = TransportadoraDAO.buscarTransportadora(nome);        
+        request.setAttribute("ResultadoBusca", ResultadoBusca);        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");        
+        dispatcher.forward(request, response);
     }
     
  

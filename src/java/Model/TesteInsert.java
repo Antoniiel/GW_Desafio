@@ -47,8 +47,7 @@ public class TesteInsert {
 //        trans.setId(21);
 //        dao.update(trans);
     
-            dao.buscarTransportadora("Nome");
-       
+            dao.buscarTransportadora("rans5");
             
           
 
