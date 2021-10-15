@@ -12,6 +12,7 @@ package connection;
 public class TesteConexao {
     public static void main(String[] args) {
         ConnectionFactory con = new ConnectionFactory();
+        con.getConnection();
     }
     
 }

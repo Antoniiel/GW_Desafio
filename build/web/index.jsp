@@ -17,7 +17,9 @@
         <header>
             <div class="cabecalho">
 
-                <h2 class="tituloheader">Transportadoras</h2>
+                <h2 class="tituloheader">
+                    <a class="tituloheader" href="TransportadoraControler?action=list">Transportadoras</a>
+                </h2>
 
                 <button class="botaocadastro" onclick="location.href = 'TransportadoraControler?action=new'" >Cadastre sua transportadora</button>
 
@@ -33,7 +35,7 @@
 
                 <div id="busca">
                     <h3>Nome</h3>
-                    <form id="buscanome" name="buscanome" action="TransportadoraControler?action=buscaNome&nome=<c:out value="${trans.nome}"/>" method="post">
+                    <form id="buscanome" name="buscanome" action="TransportadoraControler?action=buscaNome" method="post">
                         <label id="lname">Nome</label>
                         <input type="text" id="nome" name="nome" required="required"  >
                         <input type="submit" value="buscar" >
@@ -85,24 +87,25 @@
 
 
             <div class="conteudo-principal">
-                <table class="tabela">          
+                <table class="tabela">     
                     <c:forEach var="trans" items="${ListarTrasnportadoras}">
+                        <section class="conteudo-item">
+                            <tr>
+                                <td class="espacamentotabela"><a href="TransportadoraControler?action=edit&id=<c:out value="${trans.id}"/>"><c:out value="${trans.nome}"/></a></td> 
+                                <td class="espacamentotabela"><c:out value="${trans.telefone}"/></td> 
+                                <td class="espacamentotabela">Fale agora: <c:out value="${trans.whatsapp}"/></td> 
+                            </tr> 
+                            <tr> 
+                                <td class="espacamentotabela2"><c:out value="${trans.empresa}"/></td> 
 
-                        <tr>
-                            <td class="espacamentotabela"><a href="TransportadoraControler?action=edit&id=<c:out value="${trans.id}"/>"><c:out value="${trans.nome}"/></a></td> 
-                            <td class="espacamentotabela"><c:out value="${trans.telefone}"/></td> 
-                            <td class="espacamentotabela">Fale agora: <c:out value="${trans.whatsapp}"/></td> 
-                        </tr> 
-
-                        <tr> 
-                            <td class="espacamentotabela2"><c:out value="${trans.empresa}"/></td> 
-
-                            <td class="espacamentotabela2"><c:out value="${trans.email}"/></td> 
-                        </tr>                             
-                </div>
+                                <td class="espacamentotabela2"><c:out value="${trans.email}"/></td> 
+                            </tr>                
+                        </section>
+                    </c:forEach>
 
 
-            </c:forEach>
+            </div>
+
         </table>
 
 

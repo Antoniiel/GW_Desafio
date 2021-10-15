@@ -5,7 +5,7 @@
  */
 package Model;
 
-import Model.DAO.TransportadoraDAO;
+import DAO.TransportadoraDAO;
 
 /**
  *

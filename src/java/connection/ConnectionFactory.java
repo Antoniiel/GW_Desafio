@@ -24,25 +24,10 @@ public class ConnectionFactory {
     private static String senha = "1234";
     private static Connection con;
 
-//    public ConnectionFactory(){
-//        url = "jdbc:postgresql://localhost:5433/GWTrans";
-//        usuario = "postgres";
-//        senha = "1234";
-//        
-//        
-//        try {
-//            
-//            Class.forName("org.postgresql.Driver");
-//            con = DriverManager.getConnection(url,usuario,senha);
-//            System.out.println("Conexão Realizada com Sucesso!!!");            
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
     public static Connection getConnection() {
         try {
-            Class.forName("org.postgresql.Driver");
-
-            return DriverManager.getConnection(url, usuario, senha);
+            Class.forName("org.postgresql.Driver");                        
+            return DriverManager.getConnection(url, usuario, senha);            
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException("Erro na conexão: ", e);
         }

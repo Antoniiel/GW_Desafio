@@ -5,7 +5,7 @@
  */
 package Controler;
 
-import Model.DAO.TransportadoraDAO;
+import DAO.TransportadoraDAO;
 import Model.Transportadora;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -40,33 +40,31 @@ public class TransportadoraControler extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         String action = req.getParameter("action");
-        
-        
+
         try {
-            if(action==null) {
+            if (action == null) {
                 listTransportadoras(req, res);
             } else if (action.equals("new")) {
                 newForm(req, res);
-            } else if (action.equals("insert")){
+            } else if (action.equals("insert")) {
                 insertTransportadoras(req, res);
-            } else if (action.equals("delete")){
+            } else if (action.equals("delete")) {
                 System.out.println("chegou no delete controler");
                 deleteTransportadora(req, res);
-            } else if (action.equals("edit")){
+            } else if (action.equals("edit")) {
                 editForm(req, res);
-            } else if (action.equals("update")){
+            } else if (action.equals("update")) {
                 updateTransportadoras(req, res);
-            } else if (action.equals("list")){
+            } else if (action.equals("list")) {
                 listTransportadoras(req, res);
-            } else if (action.equals("buscaNome")){
+            } else if (action.equals("buscaNome")) {
                 buscaPorNome(req, res);
             }
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-     
-      
+
 //        switch (action) {
 //            case "/new":                
 //                newForm(request, response);
@@ -112,75 +110,49 @@ public class TransportadoraControler extends HttpServlet {
 //            } catch (SQLException ex) {
 //                ex.printStackTrace();
 //            }       
-            
-
-    
-  
-   
-    
     private void newForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("form.jsp");
         dispatcher.forward(request, response);
     }
-    
-    
 
     private void listTransportadoras(HttpServletRequest request, HttpServletResponse response)
-           throws SQLException, IOException, ServletException {       
-        List<Transportadora> ListarTrasnportadoras = TransportadoraDAO.getAllTrans();        
-        request.setAttribute("ListarTrasnportadoras", ListarTrasnportadoras);        
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");        
+            throws SQLException, IOException, ServletException {
+        List<Transportadora> ListarTrasnportadoras = TransportadoraDAO.getAllTrans();
+        request.setAttribute("ListarTrasnportadoras", ListarTrasnportadoras);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
-        
+
     }
-    
+
     private void buscaPorNome(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException, ServletException{        
+            throws SQLException, IOException, ServletException {
         String nome = request.getParameter("nome");
         System.out.println(nome);
-        List<Transportadora> ResultadoBusca = TransportadoraDAO.buscarTransportadora(nome);        
-        request.setAttribute("ResultadoBusca", ResultadoBusca);        
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");        
+        List<Transportadora> ListarTrasnportadoras = TransportadoraDAO.buscarTransportadora(nome);
+        request.setAttribute("ListarTrasnportadoras", ListarTrasnportadoras);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
     }
-    
- 
 
     private void insertTransportadoras(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         Transportadora trans = new Transportadora();
-        
-                trans.setEmail(request.getParameter("email"));
-                trans.setNome(request.getParameter("nome"));
-                trans.setEmpresa(request.getParameter("empresa"));
-                trans.setTelefone(request.getParameter("telefone"));
-                trans.setCelular(request.getParameter("celular"));
-                trans.setWhatsapp(request.getParameter("whatsapp"));
-                trans.setModal(request.getParameter("modal"));
-                trans.setCep(request.getParameter("cep"));
-                trans.setEstado(request.getParameter("estado"));
-                trans.setCidade(request.getParameter("cidade"));
-                trans.setBairro(request.getParameter("bairro"));
-                trans.setRua(request.getParameter("rua"));
-                trans.setNumero(request.getParameter("numero"));
-        
-//        String email = request.getParameter("email");
-//        String nome = request.getParameter("nome");
-//        String empresa = request.getParameter("empresa");
-//        String telefone = request.getParameter("telefone");
-//        String celular = request.getParameter("celular");
-//        String whatsapp = request.getParameter("whatsapp");
-//        String modal = request.getParameter("modal");
-//        String cep = request.getParameter("cep");
-//        String estado = request.getParameter("estado");
-//        String cidade = request.getParameter("cidade");
-//        String bairro = request.getParameter("bairro");
-//        String rua = request.getParameter("rua");
-//        String numero = request.getParameter("numero");
 
-//        Transportadora trans = new Transportadora(id, email, nome, empresa, telefone, celular, whatsapp,
-//                modal, cep, estado, cidade, bairro, rua, numero);
+        trans.setEmail(request.getParameter("email"));
+        trans.setNome(request.getParameter("nome"));
+        trans.setEmpresa(request.getParameter("empresa"));
+        trans.setTelefone(request.getParameter("telefone"));
+        trans.setCelular(request.getParameter("celular"));
+        trans.setWhatsapp(request.getParameter("whatsapp"));
+        trans.setModal(request.getParameter("modal"));
+        trans.setCep(request.getParameter("cep"));
+        trans.setEstado(request.getParameter("estado"));
+        trans.setCidade(request.getParameter("cidade"));
+        trans.setBairro(request.getParameter("bairro"));
+        trans.setRua(request.getParameter("rua"));
+        trans.setNumero(request.getParameter("numero"));
+
         TransportadoraDAO.insert(trans);
         response.sendRedirect("TransportadoraControler?action=list");
     }
@@ -188,39 +160,21 @@ public class TransportadoraControler extends HttpServlet {
     private void updateTransportadoras(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         Transportadora trans = new Transportadora();
-            trans.setId(Integer.parseInt(request.getParameter("id")));
-            trans.setEmail(request.getParameter("email"));
-            trans.setNome(request.getParameter("nome"));
-            trans.setEmpresa(request.getParameter("empresa"));
-            trans.setTelefone(request.getParameter("telefone"));
-            trans.setCelular(request.getParameter("celular"));
-            trans.setWhatsapp(request.getParameter("whatsapp"));
-            trans.setModal(request.getParameter("modal"));
-            trans.setCep(request.getParameter("cep"));
-            trans.setEstado(request.getParameter("estado"));
-            trans.setCidade(request.getParameter("cidade"));
-            trans.setBairro(request.getParameter("bairro"));
-            trans.setRua(request.getParameter("rua"));
-            trans.setNumero(request.getParameter("numero"));
-        
-//        
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        String email = request.getParameter("email");
-//        String nome = request.getParameter("nome");
-//        String empresa = request.getParameter("empresa");
-//        String telefone = request.getParameter("telefone");
-//        String celular = request.getParameter("celular");
-//        String whatsapp = request.getParameter("whatsapp");
-//        String modal = request.getParameter("modal");
-//        String cep = request.getParameter("cep");
-//        String estado = request.getParameter("estado");
-//        String cidade = request.getParameter("cidade");
-//        String bairro = request.getParameter("bairro");
-//        String rua = request.getParameter("rua");
-//        String numero = request.getParameter("numero");
-//        Transportadora trans = new Transportadora(id, email, nome, empresa, telefone, celular, whatsapp,
-//                modal, cep, estado, cidade, bairro, rua, numero);
-//        System.out.println("pegou o id:" + request.getParameter("id"));
+        trans.setId(Integer.parseInt(request.getParameter("id")));
+        trans.setEmail(request.getParameter("email"));
+        trans.setNome(request.getParameter("nome"));
+        trans.setEmpresa(request.getParameter("empresa"));
+        trans.setTelefone(request.getParameter("telefone"));
+        trans.setCelular(request.getParameter("celular"));
+        trans.setWhatsapp(request.getParameter("whatsapp"));
+        trans.setModal(request.getParameter("modal"));
+        trans.setCep(request.getParameter("cep"));
+        trans.setEstado(request.getParameter("estado"));
+        trans.setCidade(request.getParameter("cidade"));
+        trans.setBairro(request.getParameter("bairro"));
+        trans.setRua(request.getParameter("rua"));
+        trans.setNumero(request.getParameter("numero"));
+
         TransportadoraDAO.update(trans);
         System.out.println(trans);
         System.out.println("após update");
