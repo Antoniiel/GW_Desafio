@@ -43,44 +43,50 @@
 
                 </div>
 
-                <div id="busca">
+                <div >
                     <h3>Localização (UFs)</h3>
                     <c:forEach var="trans" items="${ListarTrasnportadoras}">
 
                         <ul class="lista">
-                            <li class="item-lista"><c:out value="${trans.estado}"/></li>
+                            <li >
+                                    <a id="estado" id="busca" name="busca" href="TransportadoraControler?action=buscaCategoria&categoria=uf&busca=<c:out value="${trans.estado}"/>"  class="item-lista"> <c:out value="${trans.estado}"/> </a>
+                            </li>
                         </ul>                                                 
 
 
                     </c:forEach>
                 </div>
 
-                <div id="busca">
+                <div >
                     <h3>Localização (Municipios)</h3>
                     <c:forEach var="trans" items="${ListarTrasnportadoras}">
 
                         <ul class="lista">
-                            <li class="item-lista"><c:out value="${trans.cidade}"/></li>
+                            <li >
+                                    <a id="estado" id="busca" name="busca" href="TransportadoraControler?action=buscaCategoria&categoria=estado&busca=<c:out value="${trans.cidade}"/>" class="item-lista"> <c:out value="${trans.cidade}"/> </a>
+                            </li>
                         </ul>                                                 
 
 
                     </c:forEach>
                 </div>
 
-                <div id="busca">
+                
 
-                    <div id="busca">
+                    <div >
                         <h3>Modal</h3>
                         <c:forEach var="trans" items="${ListarTrasnportadoras}">
 
                             <ul class="lista">
-                                <li class="item-lista"><c:out value="${trans.modal}"/></li>
+                                 <li >
+                                    <a id="estado" id="busca" name="busca" href="TransportadoraControler?action=buscaCategoria&categoria=modal&busca=<c:out value="${trans.modal}"/>" class="item-lista"> <c:out value="${trans.modal}"/> </a>
+                                 </li>
                             </ul>                                                 
 
 
                         </c:forEach>
                     </div>
-                </div>
+                
 
 
             </div>

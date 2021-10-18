@@ -5,9 +5,7 @@
         <group>
             <file>file:/home/gabriel/NetBeansProjects/TransportadoraTeste/Desafio_GW/web/form.jsp</file>
             <file>file:/home/gabriel/NetBeansProjects/TransportadoraTeste/Desafio_GW/web/index.css</file>
-            <file>file:/home/gabriel/NetBeansProjects/TransportadoraTeste/Desafio_GW/src/java/Model/TesteInsert.java</file>
-            <file>file:/home/gabriel/NetBeansProjects/TransportadoraTeste/Desafio_GW/src/java/Model/Transportadora.java</file>
-            <file>file:/home/gabriel/NetBeansProjects/TransportadoraTeste/Desafio_GW/src/java/Model/DAO/TransportadoraDAO.java</file>
+            <file>file:/home/gabriel/NetBeansProjects/TransportadoraTeste/Desafio_GW/src/java/DAO/TransportadoraDAO.java</file>
             <file>file:/home/gabriel/NetBeansProjects/TransportadoraTeste/Desafio_GW/src/java/Controler/TransportadoraControler.java</file>
             <file>file:/home/gabriel/NetBeansProjects/TransportadoraTeste/Desafio_GW/web/form.css</file>
             <file>file:/home/gabriel/NetBeansProjects/TransportadoraTeste/Desafio_GW/web/index.jsp</file>

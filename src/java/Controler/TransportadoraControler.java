@@ -59,6 +59,8 @@ public class TransportadoraControler extends HttpServlet {
                 listTransportadoras(req, res);
             } else if (action.equals("buscaNome")) {
                 buscaPorNome(req, res);
+            } else if (action.equals("buscaCategoria")) {
+                buscaPorCategoria(req, res);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -124,12 +126,25 @@ public class TransportadoraControler extends HttpServlet {
         dispatcher.forward(request, response);
 
     }
+    
+       private void buscaPorCategoria(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+           System.out.println("entrou no metodo do servlet");
+            String info = request.getParameter("busca");       
+            System.out.print("nome que veio no paramtro info: " + info);
+            String campoCategoria = request.getParameter("categoria");            
+            List<Transportadora> ListarTrasnportadoras = TransportadoraDAO.buscarTransportadoraPorCategoria(info, campoCategoria);
+        request.setAttribute("ListarTrasnportadoras", ListarTrasnportadoras);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        dispatcher.forward(request, response);
+            
+       }
 
     private void buscaPorNome(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         String nome = request.getParameter("nome");
         System.out.println(nome);
-        List<Transportadora> ListarTrasnportadoras = TransportadoraDAO.buscarTransportadora(nome);
+        List<Transportadora> ListarTrasnportadoras = TransportadoraDAO.buscarTransportadoraPorNome(nome);
         request.setAttribute("ListarTrasnportadoras", ListarTrasnportadoras);
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);

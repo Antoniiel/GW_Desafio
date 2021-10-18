@@ -149,13 +149,72 @@ public class TransportadoraDAO {
         
         return trans;
     }
-        
-    
-    public List<Transportadora> buscarTransportadora(String nome){
+       
+    public List<Transportadora> buscarTransportadoraPorCategoria(String info, String campoCategoria){
         List<Transportadora> ListarTrasnportadoras = new ArrayList<>();
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
+        Transportadora trans = new Transportadora();
+        try {
+            System.out.println("Entrou no try");
+            
+            
+            StringBuilder sb = new StringBuilder("SELECT * FROM transportadora WHERE ");
+            String campoBusca = "";
+            if(campoCategoria.equals("uf")){                
+                    System.out.println("entrou na condicao 1");
+                    sb.append("estado like '%"+info+"%'");
+                    
+                    
+            }              
+            if(campoCategoria.equals("estado")){
+                    System.out.println("entrou na condicao 2");
+                    sb.append("cidade like '%"+info+"%'");
+                 
+            }              
+            if(campoCategoria.equals("modal")){                
+                    System.out.println("entrou na condicao 3");
+                    sb.append("modal like '%"+info+"%'");                  
+            }  
+            
+            stmt = con.prepareStatement(sb.toString());
+            System.out.println(stmt);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {                
+                trans.setId(rs.getInt("id"));
+                trans.setEmail(rs.getString("email"));
+                trans.setNome(rs.getString("nome"));
+                trans.setEmpresa(rs.getString("empresa"));
+                trans.setTelefone(rs.getString("telefone"));
+                trans.setCelular(rs.getString("celular"));
+                trans.setWhatsapp(rs.getString("whatsapp"));
+                trans.setModal(rs.getString("modal"));
+                trans.setCep(rs.getString("cep"));
+                trans.setEstado(rs.getString("estado"));
+                trans.setCidade(rs.getString("cidade"));
+                trans.setBairro(rs.getString("bairro"));
+                trans.setRua(rs.getString("rua"));
+                trans.setNumero(rs.getString("numero"));
+                ListarTrasnportadoras.add(trans);                
+            
+            }         
+              
         
+             System.out.println("busca realizada na categoria");
+        } catch (SQLException e) {
+             System.out.println("Erro ao Listar" + e);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+        return ListarTrasnportadoras;
+    }
+
+
+    
+    public List<Transportadora> buscarTransportadoraPorNome(String nome){
+        List<Transportadora> ListarTrasnportadoras = new ArrayList<>();
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;        
         try {
 //            stmt = con.prepareStatement("SELECT * FROM transportadora WHERE nome LIKE '%" + nome + "%'");
             stmt = con.prepareStatement("SELECT * FROM transportadora WHERE nome LIKE '%"+ nome + "%'");
