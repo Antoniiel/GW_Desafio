@@ -19,6 +19,7 @@ public class Transportadora {
     private String rua;
     private String numero;
     private String modal;
+    private int contador;
 
     public Transportadora(int id) {
         this.id = id;
@@ -29,8 +30,9 @@ public class Transportadora {
     }
     
    
+   
     public Transportadora( int id, String email, String nome, String empresa, String telefone, String celular, 
-            String whatsapp, String modal, String cep, String estado, String cidade, String bairro, String rua, String numero){
+            String whatsapp, String modal, String cep, String estado, String cidade, String bairro, String rua, String numero, int contador){
             
              
         this.id = id;
@@ -47,10 +49,11 @@ public class Transportadora {
         this.rua = rua;
         this.numero = numero;
         this.modal = modal;
-        
+        this.contador = contador;        
     }       
 
   
+    
     
        
     public int getId() {
@@ -164,6 +167,14 @@ public class Transportadora {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+    
+     public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
     }
         
     

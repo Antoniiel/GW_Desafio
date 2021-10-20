@@ -38,7 +38,7 @@ body {
 
 
 #conteudo {
-    width: 30%;
+    width: 20%;
     float: left;    
     margin-left: 1rem;
 
@@ -72,12 +72,13 @@ body {
 }
 
 .conteudo-principal {
-    display: flex;
+    display: grid;
     margin-top: 1rem;
-    flex-grow: 8;
+    margin-left: 1rem;    
     justify-content: flex-start;
-    
-    
+    width: 1000px;
+
+
 }
 
 .tituloheader {
@@ -90,13 +91,16 @@ body {
     color: grey;
 }
 
-
-
-
-.tabela {
-     border: 1px solid black;
-     padding: 2rem;
+.conteudo-item {
+    display: flex;
+    border: 1px solid black;
+    justify-content: center;
+    margin-bottom: 1rem;
+    width: inherit;
 }
+
+
+
 
 .testediv {
     margin-bottom: 2rem;
@@ -111,10 +115,17 @@ body {
     padding: 0.3rem;
 }
 
-.espacamentotabela {
-    padding-right: 5rem;
+.li-style {
+    list-style-type: none;    
+    font: 18px Verdana, sans-serif;
+    text-align: start;
+    width: 300px;
+    height: 40px;  
+    box-sizing: border-box;
 }
-.espacamentotabela2 {
-    padding-right: 5rem;
-    padding-bottom: 2rem;
+
+.ul-style{
+    padding-inline-start: 0;
+
+
 }

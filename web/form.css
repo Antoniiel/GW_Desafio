@@ -28,14 +28,27 @@ select {
         font-size: 14pt;
 }
 
-input {
+#campo-cadastro, #cep, #estado, #cidade, #bairro, #rua {
     
     font-family: 'Open Sans', sans-serif;
     font-size: 14pt;    
-    margin-bottom: 0.5rem;    
-      
+    margin-bottom: 0.5rem;  
+     width: 60%; /* Full width */
+  padding: 3px; /* Some padding */ 
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+     
     
 }
+
+input .termos {
+    width: 1%;
+}
+
 .botaocadastro {
    margin: 0 auto;
 }

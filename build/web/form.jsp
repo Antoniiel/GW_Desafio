@@ -47,17 +47,17 @@
                         </c:if>
 
                         <label id="lname">E-mail:</label>
-                        <input type="email" id="email" required="required" name="email" value="<c:out value="${trans.email}"/>" ><br>
+                        <input type="email" id="campo-cadastro" required="required" name="email" value="<c:out value="${trans.email}"/>" ><br>
                         <label id="lname">Nome:</label>
-                        <input type="text" id="email" required="required" name="nome" value="<c:out value="${trans.nome}"/>"><br>
+                        <input type="text" id="campo-cadastro" required="required" name="nome" value="<c:out value="${trans.nome}"/>"><br>
                         <label id="lname">Empresa:</label>
-                        <input type="text" id="empresa" required="required" name="empresa" value="<c:out value="${trans.empresa}"/>" ><br>
+                        <input type="text" id="campo-cadastro" required="required" name="empresa" value="<c:out value="${trans.empresa}"/>" ><br>
                         <label id="lname">Telefone:</label>
-                        <input type="text" id="telefone" required="required" name="telefone" value="<c:out value="${trans.telefone}"/>" ><br>
+                        <input type="text" id="campo-cadastro" required="required" name="telefone" value="<c:out value="${trans.telefone}"/>" ><br>
                         <label id="lname">Celular:</label>
-                        <input type="text" id="celular" required="required" name="celular" value="<c:out value="${trans.celular}"/>"><br>
+                        <input type="text" id="campo-cadastro" required="required" name="celular" value="<c:out value="${trans.celular}"/>"><br>
                         <label id="lname">Whatsapp:</label>
-                        <input type="text" id="whatsapp" required="required" name="whatsapp" value="<c:out value="${trans.whatsapp}"/>"><br>
+                        <input type="text" id="campo-cadastro" required="required" name="whatsapp" value="<c:out value="${trans.whatsapp}"/>"><br>
                         <label id="lname">Modal:</label>                        
                         <select name="modal" value="<c:out value="${trans.modal}"/>">
                             <option >Selecione</option>
@@ -65,7 +65,7 @@
                             <option value="Aquaviario">Aquaviário</option>
                             <option value="Aereo">Aéreo</option>
                         </select>
-                        <label id="icep">cep</label>
+                        <label id="icep">Cep:</label>
                         <input type="text" id="cep" required="required" name="cep" value="<c:out value="${trans.cep}"/>" ><br>
                         <label id="lname">Estado:</label>                       
                         <input type="text" id="estado" required="required" name="estado" value="<c:out value="${trans.estado}"/>" ><br>                        
@@ -76,7 +76,7 @@
                         <label id="lname">Rua / Avenida:</label>
                         <input type="text" id="rua" required="required" name="rua" value="<c:out value="${trans.rua}"/>" ><br>
                         <label id="lname">Número:</label>
-                        <input type="text" id="numero" required="required" name="numero" value="<c:out value="${trans.numero}"/>"><br>
+                        <input type="text" id="campo-cadastro" required="required" name="numero" value="<c:out value="${trans.numero}"/>"><br>
                        
                         
 
@@ -92,7 +92,7 @@
                         <c:if test="${trans == null}">
                              <input type="checkbox" name="terms" id="terms" >
                             <label for="terms" id="terms">Eu aceito os termos de serviço</label><br>
-                            <input class="botaocadastro" onclick="check()" id="cadastrar" name="cadastrar" type="submit" value="Cadastrar-se agora!" ">
+                            <input class="termos" onclick="check()" id="cadastrar" name="cadastrar" type="submit" value="Cadastrar-se agora!" ">
                         </c:if>
                     </form>                            
 

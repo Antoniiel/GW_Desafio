@@ -120,12 +120,22 @@ public class TransportadoraControler extends HttpServlet {
 
     private void listTransportadoras(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        List<Transportadora> ListarTrasnportadoras = TransportadoraDAO.getAllTrans();
-        request.setAttribute("ListarTrasnportadoras", ListarTrasnportadoras);
+        List<Transportadora> ListarTransportadoras = TransportadoraDAO.getAllTrans();
+        request.setAttribute("ListarTrasnportadoras", ListarTransportadoras);
+        
+        List<Transportadora> ListarCategorias = TransportadoraDAO.listagemDeCategorias();
+        request.setAttribute("ListarCategorias", ListarCategorias);
+        
+        List<Transportadora> ListarCategorias2 = TransportadoraDAO.listagemDeCategorias2();
+        request.setAttribute("ListarCategorias2", ListarCategorias2);
+        
+        List<Transportadora> ListarCategorias3 = TransportadoraDAO.listagemDeCategorias3();
+        request.setAttribute("ListarCategorias3", ListarCategorias3);
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
 
     }
+    
     
        private void buscaPorCategoria(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {

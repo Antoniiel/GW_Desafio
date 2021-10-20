@@ -47,7 +47,10 @@ public class TesteInsert {
 //        trans.setId(21);
 //        dao.update(trans);
     
-            dao.buscarTransportadoraPorNome("rans5");
+    dao.listagemDeCategorias();
+    
+    
+         
             
           
 
