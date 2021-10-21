@@ -57,8 +57,6 @@ public class TransportadoraControler extends HttpServlet {
                 updateTransportadoras(req, res);
             } else if (action.equals("list")) {
                 listTransportadoras(req, res);
-            } else if (action.equals("buscaNome")) {
-                buscaPorNome(req, res);
             } else if (action.equals("buscaCategoria")) {
                 buscaPorCategoria(req, res);
             }
@@ -67,68 +65,25 @@ public class TransportadoraControler extends HttpServlet {
         }
     }
 
-//        switch (action) {
-//            case "/new":                
-//                newForm(request, response);
-//                break;
-//            case "/insert":               
-//                try {
-//                insertTransportadoras(request, response);
-//            } catch (SQLException ex) {
-//                ex.printStackTrace();
-//            }
-//            break;
-//            case "/delete":            
-//                try {
-//                deleteTransportadora(request, response);
-//            } catch (SQLException ex) {
-//                ex.printStackTrace();
-//            }
-//            break;
-//            case "/edit":            
-//                try {
-//                editForm(request, response);
-//            } catch (SQLException ex) {
-//                ex.printStackTrace();
-//            }
-//            break;
-//            case "/update":            
-//                try {
-//                updateTransportadoras(request, response);
-//            } catch (SQLException ex) {
-//                ex.printStackTrace();    
-//            }
-//            break;
-//            case "/list":
-//                try {
-//                listTransportadoras(request, response);
-//            } catch (SQLException ex) {
-//                ex.printStackTrace();
-//            }   
-//            break;
-//            default:        
-//                try {
-//                listTransportadoras(request, response);
-//            } catch (SQLException ex) {
-//                ex.printStackTrace();
-//            }       
+    //Redirecionamento para pagina de Cadastro
     private void newForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("form.jsp");
         dispatcher.forward(request, response);
     }
 
+    //Listagem de Trasportadoras e Categorias
     private void listTransportadoras(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         List<Transportadora> ListarTransportadoras = TransportadoraDAO.getAllTrans();
-        request.setAttribute("ListarTrasnportadoras", ListarTransportadoras);
-        
+        request.setAttribute("ListarTransportadoras", ListarTransportadoras);
+
         List<Transportadora> ListarCategorias = TransportadoraDAO.listagemDeCategorias();
         request.setAttribute("ListarCategorias", ListarCategorias);
-        
+
         List<Transportadora> ListarCategorias2 = TransportadoraDAO.listagemDeCategorias2();
         request.setAttribute("ListarCategorias2", ListarCategorias2);
-        
+
         List<Transportadora> ListarCategorias3 = TransportadoraDAO.listagemDeCategorias3();
         request.setAttribute("ListarCategorias3", ListarCategorias3);
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
@@ -136,30 +91,31 @@ public class TransportadoraControler extends HttpServlet {
 
     }
     
-    
-       private void buscaPorCategoria(HttpServletRequest request, HttpServletResponse response)
+    //Metodo de buscas de Transportadoras
+    private void buscaPorCategoria(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-           System.out.println("entrou no metodo do servlet");
-            String info = request.getParameter("busca");       
-            System.out.print("nome que veio no paramtro info: " + info);
-            String campoCategoria = request.getParameter("categoria");            
-            List<Transportadora> ListarTrasnportadoras = TransportadoraDAO.buscarTransportadoraPorCategoria(info, campoCategoria);
-        request.setAttribute("ListarTrasnportadoras", ListarTrasnportadoras);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-        dispatcher.forward(request, response);
-            
-       }
+        
+        String info = request.getParameter("busca");
+        System.out.print("nome que veio no paramtro info: " + info);
+        String campoCategoria = request.getParameter("categoria");
+        List<Transportadora> ListarTransportadoras = TransportadoraDAO.buscarTransportadoraPorCategoria(info, campoCategoria);
+        request.setAttribute("ListarTransportadoras", ListarTransportadoras); 
+        
+        List<Transportadora> ListarCategorias = TransportadoraDAO.listagemDeCategorias();
+        request.setAttribute("ListarCategorias", ListarCategorias);
 
-    private void buscaPorNome(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException, ServletException {
-        String nome = request.getParameter("nome");
-        System.out.println(nome);
-        List<Transportadora> ListarTrasnportadoras = TransportadoraDAO.buscarTransportadoraPorNome(nome);
-        request.setAttribute("ListarTrasnportadoras", ListarTrasnportadoras);
+        List<Transportadora> ListarCategorias2 = TransportadoraDAO.listagemDeCategorias2();
+        request.setAttribute("ListarCategorias2", ListarCategorias2);
+
+        List<Transportadora> ListarCategorias3 = TransportadoraDAO.listagemDeCategorias3();
+        request.setAttribute("ListarCategorias3", ListarCategorias3);
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
+
     }
-
+    
+    //Metodo de Cadastrar novas Transportadoras
     private void insertTransportadoras(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         Transportadora trans = new Transportadora();
@@ -182,6 +138,7 @@ public class TransportadoraControler extends HttpServlet {
         response.sendRedirect("TransportadoraControler?action=list");
     }
 
+    //Metodo de Editar Transportadoras
     private void updateTransportadoras(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         Transportadora trans = new Transportadora();
@@ -206,14 +163,16 @@ public class TransportadoraControler extends HttpServlet {
         response.sendRedirect("TransportadoraControler?action=list");
 
     }
-
+    
+    //Metodo de Deletar Transportadoras
     private void deleteTransportadora(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         TransportadoraDAO.delete(id);
         response.sendRedirect("TransportadoraControler?action=list");
     }
-
+    
+    //Metodo de Redirecionamento para a pagina de edição de transportadoras
     private void editForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));

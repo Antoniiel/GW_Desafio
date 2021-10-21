@@ -47,7 +47,9 @@ public class TesteInsert {
 //        trans.setId(21);
 //        dao.update(trans);
     
-    dao.listagemDeCategorias();
+    //dao.listagemDeCategorias();
+    
+    dao.buscarTransportadoraPorCategoria("Pernambuco", "estado");
     
     
          

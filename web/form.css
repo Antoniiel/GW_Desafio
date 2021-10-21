@@ -1,8 +1,8 @@
 .container {    
     display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
 }
 .box {
@@ -16,7 +16,7 @@ align-items: center;
 label {
     font-family: 'Open Sans', sans-serif;
     font-size: 14pt;
-    
+
 }
 h1 {
     font-family: 'Open Sans', sans-serif;
@@ -24,36 +24,77 @@ h1 {
 }
 
 select {
-        font-family: 'Open Sans', sans-serif;
-        font-size: 14pt;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14pt;
 }
 
 #campo-cadastro, #cep, #estado, #cidade, #bairro, #rua {
-    
+
     font-family: 'Open Sans', sans-serif;
-    font-size: 14pt;    
+    font-size: 12pt;    
     margin-bottom: 0.5rem;  
-     width: 60%; /* Full width */
-  padding: 3px; /* Some padding */ 
-  border: 1px solid #ccc; /* Gray border */
-  border-radius: 4px; /* Rounded borders */
-  box-sizing: border-box; /* Make sure that padding and width stays in place */
-  margin-top: 6px; /* Add a top margin */
-  margin-bottom: 16px; /* Bottom margin */
-  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
-     
-    
+    width: 100%; /* Full width */
+    padding: 3px; /* Some padding */ 
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 0.5rem; /* Add a top margin */
+    margin-bottom: 0.5rem; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */         
+}
+
+#id-modal {
+    margin-top: 0.5rem; 
+    margin-bottom: 0.5rem; 
+}
+
+#agrupamento-botoes{
+    text-align: center;
+}
+
+#botaoPadrao {
+    padding: 8px;
+    font-size: 16px;
+    display: block;
+    margin: auto;
+}
+
+#botaoEdit {
+    padding: 8px;
+    font-size: 16px;
 }
 
 input .termos {
     width: 1%;
 }
 
+#terms{
+    margin-bottom: 1rem;
+}
+
 .botaocadastro {
-   margin: 0 auto;
+    margin: 0 auto;
 }
 
 
 a {
     text-decoration: none;
+}
+
+#cabecalho-form {
+ display: flex;  
+}
+
+#cabecalho-form a {
+    font-size: 15pt;
+    color: #120a8f;
+    transition: 0.5s;
+}
+
+#cabecalho-form a:hover{    
+    filter: grayscale(60%);
+}
+
+#cabecalho-form h4 {
+    margin: 0 auto;
 }

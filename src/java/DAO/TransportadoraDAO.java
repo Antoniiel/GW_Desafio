@@ -147,27 +147,21 @@ public class TransportadoraDAO {
         return trans;
     }
 
+    //Metodo de Pesquisa de Transportadoras
     public List<Transportadora> buscarTransportadoraPorCategoria(String info, String campoCategoria) {
         List<Transportadora> ListarTransportadoras = new ArrayList<>();
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
-        Transportadora trans = new Transportadora();
-        try {
-            System.out.println("Entrou no try");
-
-            //select distinct estado, count(*) from transportadora group by estado
-            StringBuilder sb = new StringBuilder("SELECT * FROM transportadora ");
-            if (campoCategoria.equals(campoCategoria)) {
-                System.out.println(campoCategoria);
-                sb.append("WHERE " + campoCategoria + " LIKE '%" + info + "%'");
-                System.out.println(sb);
-            }
-//          
-
-            stmt = con.prepareStatement(sb.toString());
-            System.out.println(stmt);
+        
+        try {            
+            stmt = con.prepareStatement("SELECT * FROM transportadora WHERE "+campoCategoria+" LIKE ?");                            
+                stmt.setString(1, "%"+ info +"%");            
+                System.out.println(stmt);
+                
+            
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
+                Transportadora trans = new Transportadora();
                 trans.setId(rs.getInt("id"));
                 trans.setEmail(rs.getString("email"));
                 trans.setNome(rs.getString("nome"));
@@ -183,6 +177,9 @@ public class TransportadoraDAO {
                 trans.setRua(rs.getString("rua"));
                 trans.setNumero(rs.getString("numero"));
                 ListarTransportadoras.add(trans);
+                
+                 String name = rs.getString("nome");
+                System.out.println(name);
 
             }
 
@@ -192,9 +189,10 @@ public class TransportadoraDAO {
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
         }
-        return ListarTransportadoras;
+        return ListarTransportadoras ;
     }
 
+    //Metodos de Listagem de Filtros 
     public List<Transportadora> listagemDeCategorias() {
         List<Transportadora> ListarCategorias = new ArrayList<>();
         Connection con = ConnectionFactory.getConnection();
@@ -225,6 +223,7 @@ public class TransportadoraDAO {
         }
         return ListarCategorias;
     }
+
     public List<Transportadora> listagemDeCategorias2() {
         List<Transportadora> ListarCategorias2 = new ArrayList<>();
         Connection con = ConnectionFactory.getConnection();
@@ -239,7 +238,6 @@ public class TransportadoraDAO {
                 trans.setCidade(rs.getString("cidade"));
                 trans.setContador(rs.getInt("count"));
 
-                
                 ListarCategorias2.add(trans);
             }
 
@@ -251,7 +249,7 @@ public class TransportadoraDAO {
         }
         return ListarCategorias2;
     }
-    
+
     public List<Transportadora> listagemDeCategorias3() {
         List<Transportadora> ListarCategorias3 = new ArrayList<>();
         Connection con = ConnectionFactory.getConnection();
@@ -266,8 +264,6 @@ public class TransportadoraDAO {
                 trans.setModal(rs.getString("modal"));
                 trans.setContador(rs.getInt("count"));
 
-               
-
                 ListarCategorias3.add(trans);
             }
 
@@ -280,47 +276,9 @@ public class TransportadoraDAO {
         return ListarCategorias3;
     }
 
-    public List<Transportadora> buscarTransportadoraPorNome(String nome) {
-        List<Transportadora> ListarTrasnportadoras = new ArrayList<>();
-        Connection con = ConnectionFactory.getConnection();
-        PreparedStatement stmt = null;
-        try {
-//            stmt = con.prepareStatement("SELECT * FROM transportadora WHERE nome LIKE '%" + nome + "%'");
-            stmt = con.prepareStatement("SELECT * FROM transportadora WHERE nome LIKE '%" + nome + "%'");
-            //   stmt.setString(1, nome);
-            System.out.println(stmt);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                Transportadora trans = new Transportadora();
-                trans.setId(rs.getInt("id"));
-                trans.setEmail(rs.getString("email"));
-                trans.setNome(rs.getString("nome"));
-                trans.setEmpresa(rs.getString("empresa"));
-                trans.setTelefone(rs.getString("telefone"));
-                trans.setCelular(rs.getString("celular"));
-                trans.setWhatsapp(rs.getString("whatsapp"));
-                trans.setModal(rs.getString("modal"));
-                trans.setCep(rs.getString("cep"));
-                trans.setEstado(rs.getString("estado"));
-                trans.setCidade(rs.getString("cidade"));
-                trans.setBairro(rs.getString("bairro"));
-                trans.setRua(rs.getString("rua"));
-                trans.setNumero(rs.getString("numero"));
-                ListarTrasnportadoras.add(trans);
-
-            }
-            System.out.println("busca realizada");
-        } catch (SQLException e) {
-            System.out.println("Erro ao Listar" + e);
-        } finally {
-            ConnectionFactory.closeConnection(con, stmt);
-        }
-        return ListarTrasnportadoras;
-    }
-
     //Retorno de todas as transportadores
     public List<Transportadora> getAllTrans() {
-        List<Transportadora> listaDeTransportadoras = new ArrayList<>();
+        List<Transportadora> ListarTransportadoras = new ArrayList<>();
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
 
@@ -344,7 +302,7 @@ public class TransportadoraDAO {
                 trans.setBairro(rs.getString("bairro"));
                 trans.setRua(rs.getString("rua"));
                 trans.setNumero(rs.getString("numero"));
-                listaDeTransportadoras.add(trans);
+                ListarTransportadoras.add(trans);
             }
             System.out.println("busca realizada");
         } catch (SQLException e) {
@@ -352,6 +310,6 @@ public class TransportadoraDAO {
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
         }
-        return listaDeTransportadoras;
+        return ListarTransportadoras;
     }
 }

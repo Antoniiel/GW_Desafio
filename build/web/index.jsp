@@ -1,15 +1,15 @@
-    <%-- 
-    Document   : index
-    Created on : 27 de set de 2021, 08:52:12
-    Author     : gabriel
+<%-- 
+Document   : index
+Created on : 27 de set de 2021, 08:52:12
+Author     : gabriel
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="utf-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <html>
     <head>
         <title>GW Trans</title> 
         <link href="index.css" rel="stylesheet">
-        <meta charset="UTF-8"/>
+        <meta charset="utf-8"/>
 
     </head>  
     <body>
@@ -30,13 +30,14 @@
 
         <section class="container">
             <div id="conteudo">
-
-                <h1>Transportadoras</h1>
+                <div id="menu-lateral1">                    
+                    <h1>Transportadoras</h1>
+                </div>
 
                 <div id="menu-lateral">
                     <h3>Nome</h3>
                     <form id="buscanome" name="buscanome" action="TransportadoraControler?action=buscaCategoria&categoria=nome" method="post">
-                        <label id="lname">Nome</label>
+                        <label id="lname">Nome:</label>
                         <input type="text" id="busca" name="busca" required="required"  >
                         <input type="submit" value="buscar" >
                     </form>
@@ -46,10 +47,10 @@
                 <div id="menu-lateral">
                     <h3>Localização (UFs)</h3>
                     <c:forEach var="trans" items="${ListarCategorias}">
-
                         <ul class="lista">
-                            <li >
-                                <a id="item-menu" id="busca" name="busca" href="TransportadoraControler?action=buscaCategoria&categoria=estado&busca=<c:out value="${trans.estado}"/>"  class="item-lista"> <c:out value="${trans.estado}"/> (<c:out value="${trans.contador}"/>) </a>
+                            <li id="busca">
+                                <a  id="link-filtro" name="busca" href="TransportadoraControler?action=buscaCategoria&categoria=estado&busca=<c:out value="${trans.estado}"/>" 
+                                   class="item-lista"> <c:out value="${trans.estado}"/> (<c:out value="${trans.contador}"/>) </a>
                             </li>
                         </ul>                                                 
 
@@ -60,10 +61,10 @@
                 <div id="menu-lateral">
                     <h3>Localização (Municipios)</h3>
                     <c:forEach var="trans" items="${ListarCategorias2}">
-
                         <ul class="lista">
-                            <li >
-                                <a id="item-menu" id="busca" name="busca" href="TransportadoraControler?action=buscaCategoria&categoria=cidade&busca=<c:out value="${trans.cidade}"/>" class="item-lista"> <c:out value="${trans.cidade}"/> (<c:out value="${trans.contador}"/>) </a>
+                            <li id="busca">
+                                <a id="link-filtro" name="busca" href="TransportadoraControler?action=buscaCategoria&categoria=cidade&busca=<c:out value="${trans.cidade}"/>" 
+                                   class="item-lista"> <c:out value="${trans.cidade}"/> (<c:out value="${trans.contador}"/>) </a>
                             </li>
                         </ul>                                                 
 
@@ -76,11 +77,10 @@
                 <div >
                     <h3>Modal</h3>
                     <c:forEach var="trans" items="${ListarCategorias3}">
-                        
-                        
                         <ul class="lista">
-                            <li >
-                                <a id="item-menu" id="busca" name="busca" href="TransportadoraControler?action=buscaCategoria&categoria=modal&busca=<c:out value="${trans.modal}"/>" class="item-lista"> <c:out value="${trans.modal}"/> (<c:out value="${trans.contador}"/>)  </a>
+                            <li id="busca">
+                                <a  id="link-filtro" name="busca" href="TransportadoraControler?action=buscaCategoria&categoria=modal&busca=<c:out value="${trans.modal}"/>" 
+                                   class="item-lista"> <c:out value="${trans.modal}"/> (<c:out value="${trans.contador}"/>)  </a>
                             </li>
                         </ul>                                                 
 
@@ -94,34 +94,37 @@
 
 
             <div class="conteudo-principal">    
-                   
-                    <c:forEach var="trans" items="${ListarTrasnportadoras}">
-                        <section class="conteudo-item">
-                            <ul class="ul-style">
-                                <li class="li-style"><a href="TransportadoraControler?action=edit&id=<c:out value="${trans.id}"/>"><c:out value="${trans.nome}"/></a></li> 
-                                <li class="li-style"><c:out value="${trans.empresa}"/></li> 
-                                                                
-                            </ul>
-                            <ul class="ul-style">
-                                <li class="li-style"><c:out value="${trans.telefone}"/></li> 
-                                <li class="li-style"><c:out value="${trans.email}"/></li> 
-                                                              
-                            </ul>           
-                            <ul class="ul-style">                            
-                                <li class="li-style">Fale agora: <c:out value="${trans.whatsapp}"/></li>  
-                            </ul>           
-                            
-                            
-                        </section>
-                    </c:forEach>
+
+                <c:forEach var="trans" items="${ListarTransportadoras}">
+                    <section class="conteudo-item">
+                        <ul class="ul-style">
+                            <li class="li-style"><a href="TransportadoraControler?action=edit&id=<c:out value="${trans.id}"/>"><c:out value="${trans.nome}"/></a></li> 
+                            <li class="li-style"><c:out value="${trans.empresa}"/></li> 
+
+                        </ul>
+                        <ul class="ul-style">
+                            <li class="li-style"><c:out value="${trans.telefone}"/> / <c:out value="${trans.celular}"/> </li> 
+                            <li class="li-style"><c:out value="${trans.email}"/></li> 
+
+                        </ul>           
+                        <ul class="ul-style">                            
+                            <li class="li-style">Fale agora: 
+                            <a  target="blank" href="https://api.whatsapp.com/send?phone=<c:out value="${trans.whatsapp}"/>">
+                                <c:out value="${trans.whatsapp}"/></li>  
+                             </a>
+                        </ul>           
+
+
+                    </section>
+                </c:forEach>
 
 
             </div>
-       
-    </section>
 
-      
+        </section>
 
 
-</body>
+
+
+    </body>
 </html>

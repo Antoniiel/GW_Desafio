@@ -28,17 +28,21 @@
                     <form id="formulario" name="formulario" action="TransportadoraControler?action=update" method="post">
                     </c:if>
                     <c:if test="${trans == null}">
-                        <form  id="formulario" name="formulario" action="TransportadoraControler?action=insert" method="post">
+                        <form  id="formularioInsert" name="formulario" action="TransportadoraControler?action=insert" method="post">
                         </c:if>
                         <caption>
                             <h2>
                                 <c:if test="${trans != null}">
-                                    <a href="TransportadoraControler?action=list">Voltar</a>
-                                    Editar transportadora
+                                    <div id="cabecalho-form">
+                                        <a href="TransportadoraControler?action=list">Voltar</a>
+                                        <h4>Editar transportadora</h4>
+                                    </div>
                                 </c:if>
                                 <c:if test="${trans == null}">
-                                    <a href="TransportadoraControler?action=list">Voltar</a>
-                                    Cadastrar nova transportadora
+                                    <div id="cabecalho-form">
+                                        <a href="TransportadoraControler?action=list">Voltar</a>
+                                        <h4>Cadastrar nova transportadora</h4>
+                                    </div>
                                 </c:if>
                             </h2>
                         </caption>
@@ -50,22 +54,22 @@
                         <input type="email" id="campo-cadastro" required="required" name="email" value="<c:out value="${trans.email}"/>" ><br>
                         <label id="lname">Nome:</label>
                         <input type="text" id="campo-cadastro" required="required" name="nome" value="<c:out value="${trans.nome}"/>"><br>
-                        <label id="lname">Empresa:</label>
+                        <label id="lname">CNPJ:</label>
                         <input type="text" id="campo-cadastro" required="required" name="empresa" value="<c:out value="${trans.empresa}"/>" ><br>
                         <label id="lname">Telefone:</label>
-                        <input type="text" id="campo-cadastro" required="required" name="telefone" value="<c:out value="${trans.telefone}"/>" ><br>
+                        <input type="text" id="campo-cadastro" required="required" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" name="telefone" value="<c:out value="${trans.telefone}"/>" ><br>
                         <label id="lname">Celular:</label>
-                        <input type="text" id="campo-cadastro" required="required" name="celular" value="<c:out value="${trans.celular}"/>"><br>
+                        <input type="text" id="campo-cadastro" required="required" name="celular" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" value="<c:out value="${trans.celular}"/>"><br>
                         <label id="lname">Whatsapp:</label>
-                        <input type="text" id="campo-cadastro" required="required" name="whatsapp" value="<c:out value="${trans.whatsapp}"/>"><br>
-                        <label id="lname">Modal:</label>                        
-                        <select name="modal" value="<c:out value="${trans.modal}"/>">
-                            <option >Selecione</option>
+                        <input type="text" id="campo-cadastro" required="required" name="whatsapp" onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" value="<c:out value="${trans.whatsapp}"/>"><br>
+                        <label id="id-modal">Modal:</label>                        
+                        <select id="id-modal" name="modal" required value="<c:out value="${trans.modal}"/>">
+                            <option  value="">Selecione</option>
                             <option value="Rodoviario" >Rodoviário</option>
                             <option value="Aquaviario">Aquaviário</option>
                             <option value="Aereo">Aéreo</option>
-                        </select>
-                        <label id="icep">Cep:</label>
+                        </select><br>
+                        <label id="lanem">Cep:</label>
                         <input type="text" id="cep" required="required" name="cep" value="<c:out value="${trans.cep}"/>" ><br>
                         <label id="lname">Estado:</label>                       
                         <input type="text" id="estado" required="required" name="estado" value="<c:out value="${trans.estado}"/>" ><br>                        
@@ -77,46 +81,75 @@
                         <input type="text" id="rua" required="required" name="rua" value="<c:out value="${trans.rua}"/>" ><br>
                         <label id="lname">Número:</label>
                         <input type="text" id="campo-cadastro" required="required" name="numero" value="<c:out value="${trans.numero}"/>"><br>
-                       
-                        
-
-
 
                         <c:if test="${trans != null}">
-                            <input class="botaocadastro" type="submit" value="Atualizar">                            
-                            <a id="deletar" href="TransportadoraControler?action=delete&id=<c:out value="${trans.id}"/>">
-                                <input class="botaocadastro"  id="deletar" type="button" onclick="Teste()" value="Deletar">
-                            </a>
-
+                            <div id="agrupamento-botoes">
+                                <input class="botaocadastro" id="botaoEdit" type="submit" value="Atualizar">                            
+                                <a id="deletar" href="TransportadoraControler?action=delete&id=<c:out value="${trans.id}"/>">
+                                    <input class="botaocadastro"  id="botaoEdit" type="button" onclick="VerificaDelete()" value="Deletar">
+                                </a>
+                            </div>
                         </c:if>
                         <c:if test="${trans == null}">
-                             <input type="checkbox" name="terms" id="terms" >
+                            <input type="checkbox" name="terms" id="terms" >
                             <label for="terms" id="terms">Eu aceito os termos de serviço</label><br>
-                            <input class="termos" onclick="check()" id="cadastrar" name="cadastrar" type="submit" value="Cadastrar-se agora!" ">
+                            <input class="termos" onclick="Validar()" id="botaoPadrao" name="cadastrar" type="Button" value="Cadastrar-se agora!" ">
                         </c:if>
                     </form>                            
 
                     <script>
-                        function Teste(){
-                          var resultado = confirm("Excluir transportadora?");
-                          if(resultado == true){                                                       
-                             Alert("Transportadora excluida");
-                          }else{
-                              document.getElementById('deletar').href="";     
-                              alert("Operação cancelada");
-                          }
-                        }
-                        
-                        function check(){
-                            let checkbox = document.getElementbyId("terms");
-                            chebox.checked = true;
-                            if(checkbox == false){
-                                document.getElementById('cadastrar'.type="");
-                                Alert("Você precisa aceitar os termos");
+                        function VerificaDelete() {
+                            var resultado = confirm("Excluir transportadora?");
+                            if (resultado == true) {
+                                Alert("Transportadora excluida");
+                            } else {
+                                document.getElementById('deletar').href = "";
+                                alert("Operação cancelada");
                             }
                         }
 
+                        function Validar() {
+                            let campo = document.getElementById("terms");
+                            if (campo.checked) {
+                                document.getElementById("formularioInsert").submit();
+                            } else {
+                                alert('Voce precisa aceitar os termos');
+                            }
 
+                        }
+
+                        function check() {
+                            let checkbox = document.getElementbyId("terms");
+                            if (checkbox.checked) {
+                                alert('teste')
+
+
+                            }
+                        }
+
+                        function mask(o, f) {
+                            setTimeout(function () {
+                                var v = mphone(o.value);
+                                if (v != o.value) {
+                                    o.value = v;
+                                }
+                            }, 1);
+                        }
+
+                        function mphone(v) {
+                            var r = v.replace(/\D/g, "");
+                            r = r.replace(/^0/, "");
+                            if (r.length > 10) {
+                                r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+                            } else if (r.length > 5) {
+                                r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+                            } else if (r.length > 2) {
+                                r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+                            } else {
+                                r = r.replace(/^(\d*)/, "($1");
+                            }
+                            return r;
+                        }
 
                         $(document).ready(function () {
 
@@ -182,15 +215,7 @@
                         });
 
 
-                        function Validar() {
-                            let campo = document.getElementById("terms");
-                            if (campo.checked) {
-                                ("formulario").submit();
-                            } else {
-                                alert('Voce precisa aceitar os termos');
-                            }
 
-                        }
                     </script>
             </div>
         </div>
