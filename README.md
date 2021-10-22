@@ -1,2 +1,2 @@
 # GW_Desafio
-Portfólio de Transportadoras
+Portfólio de Transportadoras feito em Java, JSP e PostgreSQL.
