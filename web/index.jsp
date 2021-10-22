@@ -36,8 +36,7 @@ Author     : gabriel
 
                 <div id="menu-lateral">
                     <h3>Nome</h3>
-                    <form id="buscanome" name="buscanome" action="TransportadoraControler?action=buscaCategoria&categoria=nome" method="post">
-                        <label id="lname">Nome:</label>
+                    <form id="buscanome" name="buscanome" action="TransportadoraControler?action=buscaCategoria&categoria=nome" method="post">                        
                         <input type="text" id="busca" name="busca" required="required"  >
                         <input type="submit" value="buscar" >
                     </form>
